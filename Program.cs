@@ -8,14 +8,14 @@ using Microsoft.Extensions.Logging;
 HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);
 
 // Setup DI
-builder.Services.AddTransient<ITransientService, TransientService>();
-builder.Services.AddScoped<IScopedService, ScopedService>();
-builder.Services.AddSingleton<ISingletonService, SingletonService>();
+builder.Services.AddTransient<ITransientService, TransientService>();   //transient: new instance every time its requested. 
+builder.Services.AddScoped<IScopedService, ScopedService>();            //scoped: single instance is created and shared with a given scope.
+builder.Services.AddSingleton<ISingletonService, SingletonService>();   //singleton: one instance across application
 builder.Services.AddLogging(config => config.AddConsole());
 
 using IHost host = builder.Build();
 
-// Create scopes
+// Create scopes. Note in a web api a scope will be new for each HTTP request.
 using var scope1 = host.Services.CreateScope();
 var singleton1A = scope1.ServiceProvider.GetRequiredService<ISingletonService>();
 var singleton1B = scope1.ServiceProvider.GetRequiredService<ISingletonService>();
@@ -55,7 +55,7 @@ Console.WriteLine($"Transient2A ID: {transient2A.Id}");
 Console.WriteLine($"Transient2B ID: {transient2B.Id}");
 
 Console.ResetColor();
-Console.WriteLine("\nComparisons:");
+Console.WriteLine("\nDifferent Scope Comparisons:");
 Console.WriteLine($"Singleton Ids equal: {singleton1A.Id == singleton2A.Id}"); // True
 Console.WriteLine($"Scoped Ids equal: {scoped1A.Id == scoped2A.Id}"); // False
 Console.WriteLine($"Transient Ids equal: {transient1A.Id == transient2A.Id}"); // False
