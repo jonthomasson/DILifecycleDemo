@@ -1,6 +1,6 @@
 ﻿namespace DILifecycleDemo.Interfaces
 {
-    internal interface IScopedService
+    public interface IScopedService
     {
         Guid Id { get; }
     }

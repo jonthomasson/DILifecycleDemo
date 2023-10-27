@@ -1,6 +1,6 @@
 ﻿namespace DILifecycleDemo.Interfaces
 {
-    internal interface ISingletonService
+    public interface ISingletonService
     {
         Guid Id { get; }
     }

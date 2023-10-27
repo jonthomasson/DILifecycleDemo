@@ -1,6 +1,6 @@
 ﻿namespace DILifecycleDemo.Interfaces
 {
-    internal interface ITransientService
+    public interface ITransientService
     {
         Guid Id { get; }
     }
