@@ -2,7 +2,7 @@
 
 namespace DILifecycleDemo.Services;
 
-internal class TransientService : ITransientService
+public class TransientService : ITransientService
 {
-    public Guid Id => Guid.NewGuid();
+    public Guid Id { get; } = Guid.NewGuid();
 }

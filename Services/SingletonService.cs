@@ -2,7 +2,7 @@
 
 namespace DILifecycleDemo.Services;
 
-internal class SingletonService : ISingletonService
+public class SingletonService : ISingletonService
 {
-    public Guid Id => Guid.NewGuid();
+    public Guid Id { get; } = Guid.NewGuid();
 }

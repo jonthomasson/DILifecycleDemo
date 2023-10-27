@@ -2,7 +2,7 @@
 
 namespace DILifecycleDemo.Services;
 
-internal class ScopedService : IScopedService
+public class ScopedService : IScopedService
 {
-    public Guid Id => Guid.NewGuid();
+    public Guid Id { get; } = Guid.NewGuid();
 }
